@@ -22,5 +22,5 @@ router.get("/:id", getTicket);
 router.get("/:id/patients", getTicketsPatients);
 router.put("/state/:id", updateStateTicket);
 router.get("/:medicId/:startDate/:endDate",getTicketPeriodMedic)
-router.get(":id/medic",getTicketMedic)
+router.get("/:id/medic",getTicketMedic)
 export default router;
