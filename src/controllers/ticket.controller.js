@@ -180,3 +180,24 @@ export async function getTicketPeriodMedic(req, res) {
       });
   }
 }
+//ver todos los tickets de un medico
+export async function getTicketMedic(req, res) {
+  const { id } = req.params;
+  try {
+    const ticket = await Ticket.findAll({
+      attributes: ["id", "code","queueId","medicId","emissionDate","statusId","consultingRoomId"],
+      where: { medicId: id },
+      include: [
+    {
+      model: Medic,
+      attributes: ['name'], //  de la tabla medic
+      as: 'medic',
+    }
+  ]
+
+    });
+    res.json(ticket);
+  } catch (e) {
+    return res.status(500).json({ message: e.message });
+  }
+}
