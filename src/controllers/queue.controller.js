@@ -116,18 +116,8 @@ export async function getQueueSpecialty(req, res) {
   try {
     const queue = await Queue.findAll({
       attributes: ["id", "name","medicId", "specialtyId", "ticketCount"],
-      where: { medicId: id },
-      include: [{
-        model: Specialty,
-        attributes: ['name'], // Solo incluye el campo 'name' de la tabla Specialty
-        as: 'specialty',
-    },
-    {
-      model: Medic,
-      attributes: ['name'], //  de la tabla medic
-      as: 'medic',
-    }
-  ]
+      where: { specialtyId: id },
+      
     });
     res.json(queue);
   } catch (e) {
@@ -141,6 +131,17 @@ export async function getQueueMedic(req, res) {
     const queue = await Queue.findAll({
       attributes: ["id","name", "medicId", "specialtyId", "ticketCount"],
       where: { medicId: id },
+      include: [{
+        model: Specialty,
+        attributes: ['name'], // Solo incluye el campo 'name' de la tabla Specialty
+        as: 'specialty',
+    },
+    {
+      model: Medic,
+      attributes: ['name'], //  de la tabla medic
+      as: 'medic',
+    }
+  ]
 
     });
     res.json(queue);
