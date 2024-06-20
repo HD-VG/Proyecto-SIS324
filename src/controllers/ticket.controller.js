@@ -118,12 +118,33 @@ export const updateTicket = async (req, res) => {
 export async function getTicketsPatients(req, res) {
     try {
         const { id } = req.params;
-        const patients = await Patient.findAll({
+        const patient = await Patient.findAll({
             where: {
-                ticket_id: id
+                queueId: id
             },
+            include: [{
+              model: Status,
+              attributes: ['name'], // Solo incluye el campo 'name' de la tabla Specialty
+              as: 'status'
+          },
+          {
+            model: ConsultingRoom,
+            attributes: ['number'], //  de la tabla user
+            as: 'consultingRoom'
+          },
+          {
+            model: Medic,
+            attributes: ['name'], // Solo incluye el campo 'name' de la tabla medic
+            as: 'medic'
+          },
+          {
+            model: Queue,
+            attributes: ['name'], // Solo incluye el campo 'name' de la tabla cola
+            as: 'queue'
+          }
+      ]
         });
-        res.json(patients);
+        res.json(patient);
     } catch (error) {
         return res.pa(500).json({ message: error.message });
     }

@@ -19,7 +19,7 @@ router.get("/", getTickets);
 router.put("/:id", updateTicket);
 router.delete("/:id", deleteTicket);
 router.get("/:id", getTicket);
-router.get("/:id/patients", getTicketsPatients);
+router.get("/:id/patient", getTicketsPatients);
 router.put("/state/:id", updateStateTicket);
 router.get("/:medicId/:startDate/:endDate",getTicketPeriodMedic)
 router.get("/:id/medic",getTicketMedic)
