@@ -116,7 +116,7 @@ export async function getQueueSpecialty(req, res) {
   try {
     const queue = await Queue.findAll({
       attributes: ["id", "name","medicId", "specialtyId", "ticketCount"],
-      where: { specialtyId: id },
+      where: { medicId: id },
       include: [{
         model: Specialty,
         attributes: ['name'], // Solo incluye el campo 'name' de la tabla Specialty
