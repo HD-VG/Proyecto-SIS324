@@ -64,7 +64,7 @@ export async function createTicket(req, res) {
     }
     res.json("received");
 }
-//ver tickets con el id
+//ver tickets con el id ss
 export async function getTicket(req, res) {
     const { id } = req.params;
     try {
