@@ -125,7 +125,7 @@ export async function getTicketsPatients(req, res) {
         });
         res.json(patients);
     } catch (error) {
-        return res.pa(500).json({ message: error.message });
+        return res.status(500).json({ message: error.message });
     }
 }
 //cambiar estado del ticket
