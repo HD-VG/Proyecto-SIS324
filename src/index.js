@@ -17,6 +17,7 @@ async function main(){
         await sequelize.sync({force:false})
         app.listen(3000);
         console.log('Server on port 3000');
+        app.use('/',"Bienbenido Control de Colas")
     } catch (error){
         console.error("Unable to connect to the database: ",error);
     }
